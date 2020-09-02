@@ -53,7 +53,8 @@ class RssItem {
           .map((e) => RssCategory.parse(e))
           .toList(),
       guid: findFirstElement(element, 'guid')?.text,
-      pubDate: parseDateTime(findFirstElement(element, 'pubDate')?.text),
+      pubDate: parseDateTime(findFirstElement(element, 'pubDate')?.text ??
+          findFirstElement(element, 'a10:updated')?.text),
       author: findFirstElement(element, 'author')?.text,
       comments: findFirstElement(element, 'comments')?.text,
       source: RssSource.parse(findFirstElement(element, 'source')),
